@@ -1,12 +1,3 @@
-# Creation of the ALB itself 
-
-resource "aws_lb" "example" {
-  name               = "terraform-asg-example"
-  load_balancer_type = "application"
-  subnets            = data.aws_subnets.default.ids
-}
-
-
 # define a listener for this ALB using the aws_lb_listener resource
 
 resource "aws_lb_listener" "http" {
