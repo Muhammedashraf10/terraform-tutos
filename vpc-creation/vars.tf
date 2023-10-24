@@ -1,6 +1,6 @@
 variable "aws_region" {
   type    = string
-  description = "this is the regio whic"
+  description = "this is the region which we will use to deploy our resources"
   default = "us-east-1"
   validation {
     condition =  can(regex("^us-", var.aws_region))
