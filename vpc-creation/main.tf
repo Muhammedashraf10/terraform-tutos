@@ -37,3 +37,24 @@ resource "aws_subnet" "private_subnet" {
     Environment = "${var.environment}"
   }
 }
+
+#Internet gateway
+resource "aws_internet_gateway" "ig" {
+  vpc_id = aws_vpc.vpc.id
+  tags = {
+    "Name"        = "${var.environment}-igw"
+    "Environment" = var.environment
+  }
+}
+
+# Elastic-IP (eip) for NAT
+resource "aws_eip" "nat_eip" {
+  vpc        = true
+  depends_on = [aws_internet_gateway.ig]
+}
+
+# Elastic-IP (eip) for NAT
+resource "aws_eip" "nat_eip" {
+  vpc        = true
+  depends_on = [aws_internet_gateway.ig]
+}
