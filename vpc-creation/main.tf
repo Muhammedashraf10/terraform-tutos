@@ -13,8 +13,8 @@ resource "aws_vpc" "vpc" {
 # Public subnet
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.vpc.id #VPC ID where the vpc is the name of our vpc created above
-  count                   = length(var.public_subnets_cidr)
-  cidr_block              = element(var.public_subnets_cidr, count.index)
+  count                   = length(var.public_subnets_cidr) #it will be length(["10.0.0.0/20", "10.0.128.0/20"]) which will be 2
+  cidr_block              = element(var.public_subnets_cidr, count.index) #means that it will be 2 index since they are ["10.0.0.0/20", "10.0.128.0/20"] so it will count 0,1
   availability_zone       = element(local.availability_zones, count.index)
   map_public_ip_on_launch = true #Specify true to indicate that instances launched into the subnet should be assigned a public IP address. Default is false
 
